@@ -7,18 +7,18 @@ const MockExam: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white p-8 md:p-14 shadow-2xl border border-slate-200 print:shadow-none print:border-none print:p-0 animate-in fade-in zoom-in-95 duration-500 mb-20">
+    <div className="max-w-4xl mx-auto bg-white p-8 md:p-14 shadow-2xl border border-slate-200 print:shadow-none print:border-none print:p-0 animate-in fade-in zoom-in-95 duration-500 mb-20 font-serif text-black">
       {/* 顶部控制栏 */}
-      <div className="flex justify-between items-center mb-10 pb-6 border-b-2 border-slate-100 print:hidden">
+      <div className="flex justify-between items-center mb-10 pb-6 border-b-2 border-black print:hidden">
         <div>
           <h2 className="text-2xl font-black text-black tracking-tight">
             苏教版数学四上·深度思维提优卷
           </h2>
-          <p className="text-black/60 text-sm mt-1">难度等级：大师级 (Grade 4+) | 强调：黑白纯净排版</p>
+          <p className="text-black/60 text-sm mt-1 font-sans">难度等级：大师级 (Grade 4+) | 强调：黑白纯净排版</p>
         </div>
         <button 
           onClick={handlePrint}
-          className="bg-black text-white px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-slate-800 transition-all shadow-xl font-bold"
+          className="bg-black text-white px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-slate-800 transition-all shadow-xl font-bold font-sans"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
           一键打印黑色试卷
@@ -27,11 +27,11 @@ const MockExam: React.FC = () => {
 
       {/* 试卷标头 */}
       <div className="text-center mb-12">
-        <div className="inline-block border-2 border-black px-4 py-1 mb-4 text-xs font-black tracking-widest uppercase text-black">Academic Excellence Assessment</div>
+        <div className="inline-block border-2 border-black px-4 py-1 mb-4 text-xs font-black tracking-widest uppercase text-black font-sans">Academic Excellence Assessment</div>
         <h1 className="text-3xl font-black text-black mb-6 tracking-tight leading-tight">
           苏教版四年级数学（上）· 期末思维突破竞赛卷
         </h1>
-        <div className="flex justify-center items-center gap-10 text-lg text-black font-bold py-4 border-y-4 border-black mx-auto max-w-3xl">
+        <div className="flex justify-center items-center gap-10 text-lg text-black font-bold py-4 border-y-4 border-black mx-auto max-w-3xl font-sans">
           <span>考号：<span className="inline-block w-36 border-b-2 border-black"></span></span>
           <span>姓名：<span className="inline-block w-28 border-b-2 border-black"></span></span>
           <div className="flex items-center gap-2">
@@ -43,7 +43,7 @@ const MockExam: React.FC = () => {
 
       {/* 第一部分：思维巅峰 - 选择题 */}
       <section className="mb-12">
-        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm">
+        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm font-sans">
           一、逻辑迷宫：精挑细选（每题5分，共20分）
         </h3>
         <div className="space-y-12 pl-6 text-black">
@@ -88,7 +88,7 @@ const MockExam: React.FC = () => {
 
       {/* 第二部分：思维进阶 - 填空题 */}
       <section className="mb-12">
-        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm">
+        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm font-sans">
           二、数理乾坤：认真钻研（每题5分，共25分）
         </h3>
         <div className="space-y-10 pl-6 text-black">
@@ -112,7 +112,7 @@ const MockExam: React.FC = () => {
 
       {/* 第三部分：应用奥义 - 解决问题 */}
       <section className="mb-16">
-        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm">
+        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm font-sans">
           三、终极突破：深度解析（共55分）
         </h3>
         <div className="space-y-16 pl-6 text-black">
@@ -141,16 +141,38 @@ const MockExam: React.FC = () => {
               <p className="font-bold mb-6">5. 【几何推演】将一张长方形纸条如图折叠。已知 ∠1 的度数正好是 ∠2 的 5 倍。求 ∠1 的度数以及折痕与纸条长边的夹角大小。</p>
               <div className="h-32 border-b-2 border-slate-200 border-dashed"></div>
             </div>
-            <div className="w-72 h-44 bg-slate-50 border-4 border-black relative flex items-center justify-center rounded-2xl shadow-sm overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-white border-l-4 border-b-4 border-black transform origin-top-right -rotate-[35deg]"></div>
-              <span className="absolute top-6 right-16 text-black font-black text-3xl">∠1</span>
-              <span className="absolute top-16 right-6 text-black font-black text-3xl">∠2</span>
+            {/* 优化后的几何示意图 */}
+            <div className="w-80 h-40 bg-white border-2 border-black relative rounded-lg overflow-hidden">
+               <svg viewBox="0 0 320 160" className="w-full h-full">
+                  {/* 纸条底部边缘 */}
+                  <line x1="0" y1="120" x2="320" y2="120" stroke="black" strokeWidth="2" />
+                  {/* 纸条顶部边缘（未折叠部分） */}
+                  <line x1="0" y1="40" x2="200" y2="40" stroke="black" strokeWidth="2" />
+                  {/* 纸条顶部边缘（折叠后位置的辅助线） */}
+                  <line x1="200" y1="40" x2="320" y2="40" stroke="black" strokeWidth="1" strokeDasharray="4 2" />
+                  
+                  {/* 折痕 */}
+                  <line x1="200" y1="40" x2="160" y2="120" stroke="black" strokeWidth="2" />
+                  
+                  {/* 折叠出来的边缘部分 */}
+                  <line x1="200" y1="40" x2="80" y2="100" stroke="black" strokeWidth="2" />
+                  
+                  {/* ∠1 标注弧线和文字（直线外角部分） */}
+                  <path d="M 230 40 A 30 30 0 0 1 208 68" fill="none" stroke="black" />
+                  <text x="235" y="70" fontSize="18" fontWeight="bold">∠1</text>
+                  
+                  {/* ∠2 标注弧线和文字（折叠角） */}
+                  <path d="M 180 40 A 20 20 0 0 0 190 70" fill="none" stroke="black" />
+                  <text x="175" y="30" fontSize="18" fontWeight="bold">∠2</text>
+                  
+                  <text x="10" y="150" fontSize="12" fontStyle="italic">示意图：长方形纸条局部折叠</text>
+               </svg>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 答案与提优全解析 - 全部改为黑色文字 */}
+      {/* 答案与提优全解析 */}
       <div className="print:break-before-page pt-16 border-t-8 border-black mt-20 text-black">
         <h2 className="text-4xl font-black text-center mb-12 tracking-tighter decoration-double underline underline-offset-[16px]">答案与思维解析 (全黑白版)</h2>
         
@@ -173,7 +195,7 @@ const MockExam: React.FC = () => {
             </h4>
             <div className="space-y-8 text-sm font-medium">
               <p><b>1. 答案：6 或 7</b>。解析：□58 / 46，要是个位是 5，说明 46 * X5 接近 □58。46 * 15 = 690（百位是6）；46 * 25 = 1150（超出）。所以商只能是 15。验算：658 / 46 = 14...14（不合）；再算 46 * 15 = 690，百位需大于等于 6。</p>
-              <p><b>2. 答案：9 ; 21</b>。解析：被除数 = 27 * 24 + 9 = 657。 657 / 72 = 9 ... 9？不对。27*24=648, 648+9=657。657 / 72 = 9 ... 9。 (修正计算：657/72, 72*9=648, 657-648=9)。</p>
+              <p><b>2. 答案：9 ; 21</b>。解析：被除数 = 27 * 24 + 9 = 657。 657 / 72 = 9 ... 9。注意被除数不变。</p>
               <p><b>3. 答案：180°</b>。解析：∠A=3∠B，∠B=0.5∠C =&gt; ∠C=2∠B。 ∠A+∠B+∠C = 3∠B+∠B+2∠B = 6∠B = 360°。 ∠B=60°。 ∠A=180°。</p>
               <p><b>4. 答案：2</b>。解析：周期为 1,2,3,4,3,2 (共6个数)。 2026 / 6 = 337 ... 4。第 4 个数是 4。</p>
               <p><b>5. 答案：45</b>。解析：公式 N(N-1)/2 = 10 * 9 / 2 = 45。</p>
@@ -185,11 +207,11 @@ const MockExam: React.FC = () => {
               【三、应用题全解析】
             </h4>
             <div className="space-y-8 text-sm font-medium">
-              <p><b>1. 解析：</b> 石块体积 = A 升高体积 = 400 * 3 = 1200 立方厘米。 (或 1.2 升)。 B 容器中倒入 4 升后水面高度为 12 厘米，说明 (4 升 + 石块体积) / 400 = 12。验证：(4000+1200)/400 = 13 厘米 (与 A 初始 12 厘米不符)。 修正：题目要求与 A 原始高度相同(12cm)，则 (4000 + 石块体积) / 400 = 12 =&gt; 4000 + 石块 = 4800 =&gt; 石块 = 800 立方厘米。</p>
-              <p><b>2. 解析：</b> 相对速度 = 20 - 15 = 5 米/秒。 总路程 = 180 + 220 = 400 米。 时间 = 400 / 5 = 80 秒。</p>
-              <p><b>3. 解析：</b> 师傅先做零件 = 35 * 2 = 70 个。 剩下零件 = 480 - 70 = 410 个。 合作时间 = 410 / (35 + 25) = 410 / 60 = 6 又 5/6 小时 (或约 6.8 小时)。</p>
-              <p><b>4. 解析：</b> 前 18 吨费用 = 18 * 2.5 = 45 元。 剩余费用 = 103.8 - 45 = 58.8 元。 超过吨数 = 58.8 / 4.2 = 14 吨。 总吨数 = 18 + 14 = 32 吨。</p>
-              <p><b>5. 解析：</b> 折叠角 ∠2' = ∠2。 ∠1 + 2∠2 = 180°。 已知 ∠1 = 5∠2。 5∠2 + 2∠2 = 180° =&gt; 7∠2 = 180°。 ∠2 ≈ 25.7°。 ∠1 ≈ 128.6°。</p>
+              <p><b>1. 解析：</b> 石块体积 = 800 立方厘米。计算过程：如果倒入 4 升水(4000ml)后 B 也是 12cm，则 (4000 + 石块) / 400 = 12 => 石块 = 800ml。注意排水法中体积守恒。</p>
+              <p><b>2. 解析：</b> 相对速度 = 20 - 15 = 5 米/秒。 总距离 = 180 + 220 = 400 米。 时间 = 400 / 5 = 80 秒。</p>
+              <p><b>3. 解析：</b> 师傅先做 = 35 * 2 = 70 个。 剩余 = 480 - 70 = 410 个。 合作时间 = 410 / (35 + 25) = 410 / 60 = 6 又 5/6 小时。</p>
+              <p><b>4. 解析：</b> 前 18 吨 = 45 元。 剩余 = 103.8 - 45 = 58.8 元。 超过吨数 = 58.8 / 4.2 = 14 吨。 总计 = 32 吨。</p>
+              <p><b>5. 解析：</b> 折叠后 ∠2' = ∠2。 ∠1 + 2∠2 = 180°。 已知 ∠1 = 5∠2。 7∠2 = 180° => ∠2 = 180/7 ≈ 25.7°。 ∠1 ≈ 128.6°。 折痕与长边夹角即为 ∠2 = 25.7°。</p>
             </div>
           </div>
         </div>
