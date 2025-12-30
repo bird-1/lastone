@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const MockExam: React.FC = () => {
@@ -7,211 +6,209 @@ const MockExam: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white p-8 md:p-14 shadow-2xl border border-slate-200 print:shadow-none print:border-none print:p-0 animate-in fade-in zoom-in-95 duration-500 mb-20 font-serif text-black">
-      {/* 顶部控制栏 */}
-      <div className="flex justify-between items-center mb-10 pb-6 border-b-2 border-black print:hidden">
+    <div className="max-w-5xl mx-auto bg-white p-12 md:p-20 shadow-2xl border border-slate-200 print:shadow-none print:border-none print:p-0 animate-in fade-in zoom-in-95 duration-500 mb-10 text-black exam-paper-container">
+      {/* 打印专用样式注入及新宋体配置 */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .exam-paper-container {
+          font-family: 'NSimSun', '新宋体', 'SimSun', '宋体', serif !important;
+        }
+        .exam-paper-container *:not(button):not(svg):not(path) {
+          font-family: 'NSimSun', '新宋体', 'SimSun', '宋体', serif !important;
+        }
+        @media print {
+          @page {
+            size: A4;
+            margin: 15mm 15mm;
+          }
+          body {
+            background: white;
+            -webkit-print-color-adjust: exact;
+          }
+          .print-avoid-break {
+            break-inside: avoid;
+            page-break-inside: avoid;
+          }
+          .print-new-page {
+            break-before: page;
+            page-break-before: always;
+          }
+          .exam-paper-container {
+            width: 100%;
+            margin-bottom: 0;
+            padding: 0 !important;
+          }
+          .section-three {
+            margin-top: 1.5rem;
+          }
+        }
+      `}} />
+
+      {/* 顶部控制栏 - 打印时隐藏 */}
+      <div className="flex justify-between items-center mb-8 pb-4 border-b-2 border-black print:hidden">
         <div>
-          <h2 className="text-2xl font-black text-black tracking-tight">
-            苏教版数学四上·深度思维提优卷
+          <h2 className="text-xl font-black text-black tracking-tight">
+            苏教版数学四上·期末提优冲刺卷
           </h2>
-          <p className="text-black/60 text-sm mt-1 font-sans">难度等级：大师级 (Grade 4+) | 强调：黑白纯净排版</p>
+          <p className="text-black/60 text-xs mt-0.5">难度等级：特训提优 | 重点：除法、几何逻辑、最优策略</p>
         </div>
         <button 
           onClick={handlePrint}
-          className="bg-black text-white px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-slate-800 transition-all shadow-xl font-bold font-sans"
+          className="bg-black text-white px-5 py-2.5 rounded-lg flex items-center gap-2 hover:bg-slate-800 transition-all shadow-md font-bold text-sm active:scale-95"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-          一键打印黑色试卷
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          立即打印 (标准A4两页装)
         </button>
       </div>
 
       {/* 试卷标头 */}
-      <div className="text-center mb-12">
-        <div className="inline-block border-2 border-black px-4 py-1 mb-4 text-xs font-black tracking-widest uppercase text-black font-sans">Academic Excellence Assessment</div>
-        <h1 className="text-3xl font-black text-black mb-6 tracking-tight leading-tight">
-          苏教版四年级数学（上）· 期末思维突破竞赛卷
+      <div className="text-center mb-10">
+        <div className="inline-block border border-black px-3 py-0.5 mb-2 text-[10px] font-black tracking-widest uppercase text-black">Elite Academic Excellence</div>
+        <h1 className="text-2xl font-black text-black mb-4 tracking-tight leading-tight">
+          苏教版四年级数学（上）· 期末考点深度提优检测卷
         </h1>
-        <div className="flex justify-center items-center gap-10 text-lg text-black font-bold py-4 border-y-4 border-black mx-auto max-w-3xl font-sans">
-          <span>考号：<span className="inline-block w-36 border-b-2 border-black"></span></span>
-          <span>姓名：<span className="inline-block w-28 border-b-2 border-black"></span></span>
+        <div className="flex justify-center items-center gap-12 text-base text-black font-bold py-3 border-y-2 border-black mx-auto max-w-xl">
+          <span>姓名：<span className="inline-block w-40 border-b border-black"></span></span>
           <div className="flex items-center gap-2">
             <span>实得分：</span>
-            <div className="w-24 h-14 border-4 border-black flex items-center justify-center text-3xl font-black text-black rounded-lg"></div>
+            <div className="w-16 h-10 border-2 border-black flex items-center justify-center text-xl font-black text-black rounded"></div>
           </div>
         </div>
       </div>
 
-      {/* 第一部分：思维巅峰 - 选择题 */}
-      <section className="mb-12">
-        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm font-sans">
-          一、逻辑迷宫：精挑细选（每题5分，共20分）
+      {/* 第一部分：思维挑战 - 选择题 */}
+      <section className="mb-10 print-avoid-break">
+        <h3 className="text-lg font-black bg-black text-white inline-block px-6 py-1.5 mb-6 rounded shadow-sm">
+          一、精准分析：精挑细选（每题5分，共20分）
         </h3>
-        <div className="space-y-12 pl-6 text-black">
-          <div className="text-lg">
-            <p className="font-bold leading-relaxed mb-4">1. 有两个完全相同的容器 A 和 B。A 中盛满水，B 中只有一半水。现将 A 中水的 1/4 倒入 B 中，再将此时 B 中水的 1/4 倒回 A。此时 A 容器中的水比 B 容器中的水( )。</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-black pl-4 mt-2 font-medium">
-              <span>A. 多</span>
-              <span>B. 少</span>
-              <span>C. 一样多</span>
-              <span>D. 无法确定</span>
+        <div className="space-y-6 pl-4 text-black text-[15px]">
+          {[
+            {
+              q: "1. 容器 A 盛水 2 升，容器 B 盛水 800 毫升。将 B 中的水倒入 A 中( )毫升后，A 容器中的水恰好是 B 容器中水的 3 倍。",
+              opts: ["A. 100", "B. 200", "C. 300", "D. 400"]
+            },
+            {
+              q: "2. 在算式 A ÷ B = 15...12 中，如果被除数 A 和除数 B 同时乘 10，那么现在的余数是( )。",
+              opts: ["A. 12", "B. 1.2", "C. 120", "D. 1200"]
+            },
+            {
+              q: "3. 一个立体图形从正面看是 3 个小正方形（排成一行），从右面看也是 3 个小正方形（排成一行）。要搭成这个立体图形，最多需要( )个小正方体。",
+              opts: ["A. 3", "B. 5", "C. 7", "D. 9"]
+            },
+            {
+              q: "4. 钟面上从 4 时整走到 4 时 30 分，时针转过的角是( )度。",
+              opts: ["A. 180", "B. 15", "C. 30", "D. 150"]
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="print-avoid-break">
+              <p className="font-bold leading-relaxed mb-3">{item.q}</p>
+              <div className="grid grid-cols-4 gap-4 text-black pl-6 font-medium italic">
+                {item.opts.map((opt, oIdx) => <span key={oIdx}>{opt}</span>)}
+              </div>
             </div>
-          </div>
-          <div className="text-lg">
-            <p className="font-bold leading-relaxed mb-4">2. 被除数扩大 20 倍，除数缩小 5 倍，商会( )。</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-black pl-4 mt-2 font-medium">
-              <span>A. 扩大 4 倍</span>
-              <span>B. 缩小 4 倍</span>
-              <span>C. 扩大 100 倍</span>
-              <span>D. 缩小 100 倍</span>
-            </div>
-          </div>
-          <div className="text-lg">
-            <p className="font-bold leading-relaxed mb-4">3. 一个物体由 8 个相同的小正方体搭成，从正面、侧面、上面看到的形状完全相同，且均为 <span className="inline-block w-8 h-8 border-2 border-black bg-slate-100 align-middle ml-1"></span>。这个物体的搭法最多有( )种。</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-black pl-4 mt-2 font-medium">
-              <span>A. 1 种</span>
-              <span>B. 2 种</span>
-              <span>C. 3 种</span>
-              <span>D. 4 种</span>
-            </div>
-          </div>
-          <div className="text-lg">
-            <p className="font-bold leading-relaxed mb-4">4. 在 4 点整到 5 点整之间，时针与分针在( )时刻第一次呈现直角关系。</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-black pl-4 mt-2 font-medium">
-              <span>A. 4 点 5 分</span>
-              <span>B. 4 点 6 分之前</span>
-              <span>C. 4 点 38 分</span>
-              <span>D. 4 点 5 分之后</span>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* 第二部分：思维进阶 - 填空题 */}
-      <section className="mb-12">
-        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm font-sans">
-          二、数理乾坤：认真钻研（每题5分，共25分）
+      <section className="mb-10 print-avoid-break">
+        <h3 className="text-lg font-black bg-black text-white inline-block px-6 py-1.5 mb-6 rounded shadow-sm">
+          二、缜密思考：认真钻研（每题5分，共25分）
         </h3>
-        <div className="space-y-10 pl-6 text-black">
-          <div className="text-lg leading-loose">
-            <p className="font-bold">1. 在算式 □58 ÷ 46 中，要使商是两位数且个位上的数字是 5，□里可以填的数字是( )。</p>
-          </div>
-          <div className="text-lg leading-loose">
-            <p className="font-bold">2. 小明在计算除法时，把除数 72 看成了 27，结果得到的商是 24，余数是 9。正确的商应该是( )，余数是( )。</p>
-          </div>
-          <div className="text-lg leading-loose">
-            <p className="font-bold">3. 已知一个角 ∠A 是 ∠B 的 3 倍，∠B 是 ∠C 的一半。如果这三个角之和恰好是一个周角，那么 ∠A = ( )°。</p>
-          </div>
-          <div className="text-lg leading-loose">
-            <p className="font-bold">4. 数列：1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1... 以此周期循环，第 2026 个数是( )。</p>
-          </div>
-          <div className="text-lg leading-loose">
-            <p className="font-bold">5. 在一张纸上画了 10 条直线，其中任何两条都不平行，任何三条都不交于一点。这 10 条直线共产生了( )个交点。</p>
-          </div>
+        <div className="space-y-5 pl-4 text-black text-[15px]">
+          {[
+            "算式 3□5 ÷ 37，要使商是两位数，□里最小填( )；若商的末尾有 0，□里可以填( )。",
+            "小强在计算除法时，把被除数 470 看成了 425，结果得到的商比原来小了 5，且余数都是 2。正确的除数是( )，正确的商是( )。",
+            "已知 ∠1、∠2、∠3 是一个平角内的三个角，且 ∠1 = 2∠2，∠3 = ∠1 + 30°，那么 ∠1 = ( )°。",
+            "一列数按 1, 2, 2, 3, 3, 3, 1, 2, 2, 3, 3, 3... 循环排列，第 100 个数是( )，这 100 个数的总和是( )。",
+            "一个盒子内有红、黄、蓝三种球共 20 个。摸到红球可能性最大，摸到蓝球可能性最小且不为 0。黄球最少可能有( )个，最多可能有( )个。"
+          ].map((q, idx) => (
+            <div key={idx} className="leading-loose print-avoid-break">
+              <p className="font-bold">{idx + 1}. {q}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* 第三部分：应用奥义 - 解决问题 */}
-      <section className="mb-16">
-        <h3 className="text-xl font-black bg-black text-white inline-block px-8 py-2 mb-8 rounded-lg shadow-sm font-sans">
-          三、终极突破：深度解析（共55分）
+      <section className="section-three mb-12">
+        <h3 className="text-lg font-black bg-black text-white inline-block px-6 py-1.5 mb-8 rounded shadow-sm">
+          三、实战突破：解决问题（每题11分，共55分）
         </h3>
-        <div className="space-y-16 pl-6 text-black">
-          <div className="text-lg">
-            <p className="font-bold mb-4">1. 【排水逻辑】有两个底面积相同的长方体容器 A 和 B。A 容器中盛有 12 厘米深的水，B 容器是空的。现将一个石块放入 A 中，水面升高了 3 厘米且未溢出；取出石块放入 B 中，再往 B 中倒入 4 升水，水面高度恰好与 A 容器原始高度相同。求该石块的体积。（假设容器底面积为 400 平方厘米）</p>
-            <div className="h-40 border-b-2 border-slate-200 border-dashed"></div>
+        <div className="space-y-6 pl-4 text-black text-[15px]">
+          <div className="print-avoid-break">
+            <p className="font-bold mb-4 leading-relaxed text-base">1. 【排水法逻辑】一个长方体水缸，底面积是 500 平方厘米，缸内水深 12 厘米。现将一个底面积为 200 平方厘米、高为 10 厘米的长方体石块完全浸没于水中（水未溢出）。此时水面升高了多少厘米？</p>
+            <div className="h-16"></div>
           </div>
 
-          <div className="text-lg">
-            <p className="font-bold mb-4">2. 【行程追及】甲、乙两列火车，甲车长 180 米，每秒行 20 米；乙车长 220 米，每秒行 15 米。两车在双轨上同向而行，从甲车头追上乙车尾，到甲车尾完全超过乙车头，一共需要多少秒？</p>
-            <div className="h-40 border-b-2 border-slate-200 border-dashed"></div>
+          <div className="print-avoid-break">
+            <p className="font-bold mb-4 leading-relaxed text-base">2. 【行程追及】甲、乙两列火车，甲车长 180 米，每秒行 20 米；乙车长 220 米，每秒行 15 米。两车在双轨上同向而行，从甲车头追上乙车尾，到甲车尾完全超过乙车头，一共需要多少秒？</p>
+            <div className="h-16"></div>
           </div>
 
-          <div className="text-lg">
-            <p className="font-bold mb-4">3. 【优化方案】某加工厂要生产 480 个零件。由师徒二人共同完成。师傅每小时做 35 个，徒弟每小时做 25 个。师傅先做了 2 小时后，剩下的由二人合作完成。还需要几小时才能全部完成？</p>
-            <div className="h-40 border-b-2 border-slate-200 border-dashed"></div>
+          <div className="print-avoid-break">
+            <p className="font-bold mb-4 leading-relaxed text-base">3. 【分段策略】某市出租车收费标准：3 公里以内（含 3 公里）收费 10 元；超过 3 公里的部分，每公里加收 2 元（不足 1 公里按 1 公里计算）。小华打车去图书馆付了 26 元，他最远坐了多少公里？</p>
+            <div className="h-16"></div>
           </div>
 
-          <div className="text-lg">
-            <p className="font-bold mb-4">4. 【阶梯水费】某市为了节约用水，实行阶梯水费：每月用水量在 18 吨以内（含 18 吨），每吨 2.5 元；超过 18 吨的部分，每吨 4.2 元。张叔叔家上个月付水费 103.8 元，他家上个月实际用水多少吨？</p>
-            <div className="h-40 border-b-2 border-slate-200 border-dashed"></div>
+          <div className="print-avoid-break">
+            <p className="font-bold mb-4 leading-relaxed text-base">4. 【组合优化】某景区门票价格：成人票 80 元，儿童票 40 元；10 人以上团体票（含 10 人）一律 50 元。现有 6 名家长带着 5 名学生去游玩，怎样购票最省钱？最少需要多少元？</p>
+            <div className="h-16"></div>
           </div>
 
-          <div className="text-lg flex flex-col md:flex-row gap-10">
+          <div className="flex flex-col gap-6 print-avoid-break">
             <div className="flex-1">
-              <p className="font-bold mb-6">5. 【几何推演】将一张长方形纸条如图折叠。已知 ∠1 的度数正好是 ∠2 的 5 倍。求 ∠1 的度数以及折痕与纸条长边的夹角大小。</p>
-              <div className="h-32 border-b-2 border-slate-200 border-dashed"></div>
+              <p className="font-bold mb-4 leading-relaxed text-rose-800 text-base">5. 【复合角推演】如图，在直角 ∠AOB 的内部有两条射线 OC 和 OD。已知 ∠AOC 的度数是 ∠COD 的 4 倍，且 ∠BOD 的度数比 ∠COD 的 2 倍多 6°。请通过逻辑列式计算出 ∠COD 的度数。并判断 ∠BOC 是什么角？</p>
+              <div className="h-12"></div>
             </div>
-            {/* 优化后的几何示意图 */}
-            <div className="w-80 h-40 bg-white border-2 border-black relative rounded-lg overflow-hidden">
+            <div className="w-80 h-40 bg-white border border-black relative rounded shrink-0 self-center mt-2">
                <svg viewBox="0 0 320 160" className="w-full h-full">
-                  {/* 纸条底部边缘 */}
-                  <line x1="0" y1="120" x2="320" y2="120" stroke="black" strokeWidth="2" />
-                  {/* 纸条顶部边缘（未折叠部分） */}
-                  <line x1="0" y1="40" x2="200" y2="40" stroke="black" strokeWidth="2" />
-                  {/* 纸条顶部边缘（折叠后位置的辅助线） */}
-                  <line x1="200" y1="40" x2="320" y2="40" stroke="black" strokeWidth="1" strokeDasharray="4 2" />
-                  
-                  {/* 折痕 */}
-                  <line x1="200" y1="40" x2="160" y2="120" stroke="black" strokeWidth="2" />
-                  
-                  {/* 折叠出来的边缘部分 */}
-                  <line x1="200" y1="40" x2="80" y2="100" stroke="black" strokeWidth="2" />
-                  
-                  {/* ∠1 标注弧线和文字（直线外角部分） */}
-                  <path d="M 230 40 A 30 30 0 0 1 208 68" fill="none" stroke="black" />
-                  <text x="235" y="70" fontSize="18" fontWeight="bold">∠1</text>
-                  
-                  {/* ∠2 标注弧线和文字（折叠角） */}
-                  <path d="M 180 40 A 20 20 0 0 0 190 70" fill="none" stroke="black" />
-                  <text x="175" y="30" fontSize="18" fontWeight="bold">∠2</text>
-                  
-                  <text x="10" y="150" fontSize="12" fontStyle="italic">示意图：长方形纸条局部折叠</text>
+                  <line x1="160" y1="140" x2="160" y2="20" stroke="black" strokeWidth="2" />
+                  <text x="155" y="15" fontSize="14" fontWeight="bold">A</text>
+                  <line x1="160" y1="140" x2="280" y2="140" stroke="black" strokeWidth="2" />
+                  <text x="285" y="145" fontSize="14" fontWeight="bold">B</text>
+                  <circle cx="160" cy="140" r="3" fill="black" />
+                  <text x="145" y="150" fontSize="14" fontWeight="bold">O</text>
+                  <polyline points="160,130 170,130 170,140" fill="none" stroke="black" strokeWidth="1" />
+                  <line x1="160" y1="140" x2="242" y2="66" stroke="black" strokeWidth="2" strokeDasharray="4,2" />
+                  <text x="245" y="60" fontSize="14" fontWeight="bold">C</text>
+                  <line x1="160" y1="140" x2="255" y2="85" stroke="black" strokeWidth="2" strokeDasharray="4,2" />
+                  <text x="260" y="85" fontSize="14" fontWeight="bold">D</text>
                </svg>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 答案与提优全解析 */}
-      <div className="print:break-before-page pt-16 border-t-8 border-black mt-20 text-black">
-        <h2 className="text-4xl font-black text-center mb-12 tracking-tighter decoration-double underline underline-offset-[16px]">答案与思维解析 (全黑白版)</h2>
+      {/* 答案解析页 - 打印时强制另起一页 */}
+      <div className="print-new-page pt-10 border-t-2 border-black mt-16 text-black">
+        <h2 className="text-xl font-black text-center mb-10 tracking-tighter underline underline-offset-8">参考答案与提优解析 (Deep Analysis)</h2>
         
-        <div className="grid grid-cols-1 gap-12">
-          <div className="bg-slate-50 p-10 rounded-3xl border-2 border-black">
-            <h4 className="font-black text-xl mb-8 flex items-center gap-3 underline decoration-4">
-              【一、客观题解析】
-            </h4>
-            <div className="space-y-8 text-sm font-medium">
-              <p><b>1. 答案：A</b>。解析：设 A 为 V。B 初始 0.5V。A 给 B：B 变 0.5V + 0.25V = 0.75V，A 剩 0.75V。B 回 A：B 给 A 0.75V * 1/4 = 0.1875V。A 变 0.75 + 0.1875 = 0.9375V。B 剩 0.75 - 0.1875 = 0.5625V。A &gt; B。</p>
-              <p><b>2. 答案：C</b>。解析：商 = (被除数 * 20) / (除数 / 5) = (被除数 / 除数) * (20 * 5) = 商 * 100。</p>
-              <p><b>3. 答案：A</b>。解析：当三视图相同时，且形状为田字格，通常意味着这 8 个块构成了一个 2x2x2 的大立方体，只有 1 种标准搭法符合紧凑堆叠且视角一致的要求。</p>
-              <p><b>4. 答案：D</b>。解析：4 点整时分针在 12，时针在 4，夹角 120°。分针速度 6°/分，时针 0.5°/分。直角意味着夹角变为 90°。 (120-90) / (6-0.5) = 30 / 5.5 ≈ 5.45 分。即 4 点 5 分之后。</p>
+        <div className="space-y-8">
+          <div className="bg-slate-50 p-6 rounded-xl border border-black print-avoid-break">
+            <h4 className="font-bold text-base mb-4 underline">【一、选择题答案】</h4>
+            <div className="space-y-2 text-sm leading-relaxed">
+              <p><b>1. 答案：A</b>。解析：设从 B 倒入 A 的水量为 x 毫升。(2000 + x) = 3 * (800 - x) =&gt; 4x = 400, x = 100。</p>
+              <p><b>2. 答案：C</b>。解析：商不变规律中，被除数和除数同时乘 10，商不变，余数也要乘 10。12 * 10 = 120。</p>
+              <p><b>3. 答案：D</b>。解析：从正面和右面看都是一行 3 个，最多可填满 3x3 底部一层，即 9 个。</p>
+              <p><b>4. 答案：B</b>。解析：时针每小时 30 度，30 分钟走 15 度。</p>
             </div>
           </div>
 
-          <div className="bg-slate-50 p-10 rounded-3xl border-2 border-black">
-            <h4 className="font-black text-xl mb-8 flex items-center gap-3 underline decoration-4">
-              【二、填空题解析】
-            </h4>
-            <div className="space-y-8 text-sm font-medium">
-              <p><b>1. 答案：6 或 7</b>。解析：□58 / 46，要是个位是 5，说明 46 * X5 接近 □58。46 * 15 = 690（百位是6）；46 * 25 = 1150（超出）。所以商只能是 15。验算：658 / 46 = 14...14（不合）；再算 46 * 15 = 690，百位需大于等于 6。</p>
-              <p><b>2. 答案：9 ; 21</b>。解析：被除数 = 27 * 24 + 9 = 657。 657 / 72 = 9 ... 9。注意被除数不变。</p>
-              <p><b>3. 答案：180°</b>。解析：∠A=3∠B，∠B=0.5∠C =&gt; ∠C=2∠B。 ∠A+∠B+∠C = 3∠B+∠B+2∠B = 6∠B = 360°。 ∠B=60°。 ∠A=180°。</p>
-              <p><b>4. 答案：2</b>。解析：周期为 1,2,3,4,3,2 (共6个数)。 2026 / 6 = 337 ... 4。第 4 个数是 4。</p>
-              <p><b>5. 答案：45</b>。解析：公式 N(N-1)/2 = 10 * 9 / 2 = 45。</p>
+          <div className="bg-slate-50 p-6 rounded-xl border border-black print-avoid-break">
+            <h4 className="font-bold text-base mb-4 underline">【二、填空题答案】</h4>
+            <div className="space-y-2 text-sm leading-relaxed text-justify">
+              <p>1. <b>7 ; 7/8/9</b> | 2. <b>9 ; 52</b> | 3. <b>60°</b> | 4. <b>3 ; 232</b> | 5. <b>2 ; 9</b></p>
             </div>
           </div>
 
-          <div className="bg-slate-50 p-10 rounded-3xl border-2 border-black">
-            <h4 className="font-black text-xl mb-8 flex items-center gap-3 underline decoration-4">
-              【三、应用题全解析】
-            </h4>
-            <div className="space-y-8 text-sm font-medium">
-              <p><b>1. 解析：</b> 石块体积 = 800 立方厘米。计算过程：如果倒入 4 升水(4000ml)后 B 也是 12cm，则 (4000 + 石块) / 400 = 12 => 石块 = 800ml。注意排水法中体积守恒。</p>
-              <p><b>2. 解析：</b> 相对速度 = 20 - 15 = 5 米/秒。 总距离 = 180 + 220 = 400 米。 时间 = 400 / 5 = 80 秒。</p>
-              <p><b>3. 解析：</b> 师傅先做 = 35 * 2 = 70 个。 剩余 = 480 - 70 = 410 个。 合作时间 = 410 / (35 + 25) = 410 / 60 = 6 又 5/6 小时。</p>
-              <p><b>4. 解析：</b> 前 18 吨 = 45 元。 剩余 = 103.8 - 45 = 58.8 元。 超过吨数 = 58.8 / 4.2 = 14 吨。 总计 = 32 吨。</p>
-              <p><b>5. 解析：</b> 折叠后 ∠2' = ∠2。 ∠1 + 2∠2 = 180°。 已知 ∠1 = 5∠2。 7∠2 = 180° => ∠2 = 180/7 ≈ 25.7°。 ∠1 ≈ 128.6°。 折痕与长边夹角即为 ∠2 = 25.7°。</p>
+          <div className="bg-slate-50 p-6 rounded-xl border border-black print-avoid-break">
+            <h4 className="font-bold text-base mb-4 underline">【三、解决问题答案】</h4>
+            <div className="space-y-4 text-sm leading-relaxed text-justify">
+              <p><b>Q1:</b> 200 * 10 / 500 = 4 厘米。 (石块体积等于排开水体积)</p>
+              <p><b>Q2:</b> (180 + 220) / (20 - 15) = 80 秒。 (路程和除以速度差)</p>
+              <p><b>Q3:</b> 3 + (26 - 10) / 2 = 11 公里。 (分段计算，超出 3 公里部分收费 16 元)</p>
+              <p><b>Q4:</b> 团体票优惠方案：(6 + 5) * 50 = 550 元。 散买：6 * 80 + 5 * 40 = 680 元。 550 &lt; 680，故最少 550 元。</p>
+              <p><b>Q5:</b> 设 ∠COD=x，则 4x + x + (2x + 6) = 90 =&gt; 7x = 84, x = 12°。 ∠BOC = 12 + 30 = 42°，为锐角。</p>
             </div>
           </div>
         </div>
